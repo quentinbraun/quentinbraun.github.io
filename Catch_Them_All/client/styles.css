@@ -1,0 +1,130 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: url('./assets/image.png') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    text-align: center;
+    position: relative;
+    bottom: 350px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.badge {
+    text-align: center;
+    align-items: center;
+    position: relative;
+    bottom: 350px;
+    background: rgba(255, 255, 255, 255);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 20px 10px;
+    border-radius: 10px;
+}
+
+h1 {
+    font-size: 3rem;
+    margin: 0;
+}
+
+p {
+    font-size: 1.5rem;
+}
+
+.movable {
+    position: absolute;
+    transition: left 2s linear, top 2s linear;
+}
+
+.hidden {
+    display: none;
+}
+
+#qrcode {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: auto;
+}
+
+.add-button {
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5%;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+}
+
+.close {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: red;
+    cursor: pointer;
+    float: right;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 0.7rem;
+    font-size: 1rem;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.black {
+    color: black;
+}

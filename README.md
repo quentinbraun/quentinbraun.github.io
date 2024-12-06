@@ -27,6 +27,6 @@
 ---
 
 ### **7. Compatibilité universelle**
-- Quand tout est sur une seule ligne, votre code devient facilement copiable dans une commande terminal. C’est l’essence même de la portabilité.
+- Quand tout est sur une seule ligne, votre code devient facilement copiable dans une commande terminal. C’est l’essence même de la **portabilité**.
 
 ---
