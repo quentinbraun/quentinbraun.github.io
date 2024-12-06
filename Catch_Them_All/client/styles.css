@@ -128,3 +128,46 @@ button:hover {
 .black {
     color: black;
 }
+
+.carousel {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    max-width: 300px; /* Tu peux ajuster la largeur comme tu veux */
+    margin: 20px;
+    position: fixed; /* Fixe le carrousel en bas à droite */
+    bottom: 20px; /* Marge par rapport au bas de la fenêtre */
+    right: 20px; /* Marge par rapport à la droite de la fenêtre */
+    z-index: 1000; /* Assure-toi que le carrousel reste au-dessus des autres éléments */
+    border: 2px solid #ccc; /* Pour ajouter une bordure si nécessaire */
+    background-color: white; /* Fond blanc pour le carrousel */
+    padding: 10px; /* Espace interne */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Ombre pour le carrousel */
+    border-radius: 8px; /* Coins arrondis */
+}
+
+.carousel-images {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.carousel img {
+    width: 100%;
+    flex-shrink: 0;
+}
+.carousel-buttons {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+.carousel-button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 50%;
+}

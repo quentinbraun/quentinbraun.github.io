@@ -24,7 +24,6 @@ def image_to_mosaic(image_path, block_size):
             else:
                 mosaic_array[i:i+block_size, j:j+block_size] = 0  # Noir
     mosaic_image = Image.fromarray(mosaic_array)
-    mosaic_image.show()
     return mosaic_image
 
 def generate_qrcode(image, link):

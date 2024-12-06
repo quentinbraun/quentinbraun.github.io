@@ -10,44 +10,52 @@ const fs = require('fs');
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+const pokemonlist = [
+    "amonistar.png",
+    "carabaffe.png",
+    "carapuce.png",
+    "dofin.png",
+    "flotajou.png",
+    "gobou.png",
+    "greninja.png",
+    "kyogre.png",
+    "hypocean.png",
+    "leviator.png",
+    "lokhlass.png",
+    "loupio.png",
+    "phione.png",
+    "stari.png",
+    "volcanion.png",
+    "wailmer.png",
+];
 
 app.post('/generate-qrcode', (req, res) => {
-    const link = req.body.link;
+    const { link, imageName } = req.body;
 
-    if (!link) {
-        return res.status(400).send('Lien est nécessaire.');
+    if (!link || !imageName) {
+        return res.status(400).send('Lien et image sont nécessaires.');
+    }
+
+    // Vérifie si l'image sélectionnée fait partie de la liste des Pokémon
+    if (!pokemonlist.includes(imageName)) {
+        return res.status(400).send('Image sélectionnée invalide.');
     }
 
     const assetsDirectory = path.join(__dirname, 'assets');
-    
-    fs.readdir(assetsDirectory, (err, files) => {
-        if (err) {
-            console.error(`Erreur lors de la lecture du dossier assets: ${err}`);
+    const selectedImage = path.join(assetsDirectory, imageName);
+    const outputImage = `qrcode/qrcode-${link.replace('://', '').replace(/\//g, '')}.png`;
+
+    exec(`python3 generate-qrcode -i ${selectedImage} -l ${link}`, (error, stdout, stderr) => {
+        if (error) {
+            console.error(`Erreur lors de l'exécution du script Python: ${stderr}`);
             return res.status(500).send('Erreur interne du serveur.');
         }
 
-        // Filtrer uniquement les fichiers image (par exemple .png, .jpg, .jpeg)
-        const imageFiles = files.filter(file => /\.(png|jpg|jpeg)$/i.test(file));
-        
-        if (imageFiles.length === 0) {
-            return res.status(404).send('Aucune image trouvée dans le dossier assets.');
-        }
-
-        // Sélectionner un fichier image au hasard
-        const randomImage = imageFiles[Math.floor(Math.random() * imageFiles.length)];
-
-        const outputImage = `qrcode/qrcode-${link.replace('://', '').replace(/\//g, '')}.png`;
-
-        // Exécuter le script Python pour générer le QR code avec l'image choisie
-        exec(`python3 generate-qrcode.py -i ${path.join(assetsDirectory, randomImage)} -l ${link}`, (error, stdout, stderr) => {
-            if (error) {
-                console.error(`Erreur lors de l'exécution du script Python: ${stderr}`);
-                return res.status(500).send('Erreur interne du serveur.');
-            }
-
-            console.log(stdout);
-            res.json({ imagePath: outputImage });
-        });
+        console.log(stdout);
+        res.json({ imagePath: outputImage });
     });
 });
 

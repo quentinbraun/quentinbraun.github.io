@@ -1,0 +1,42 @@
+# QR Code Generator - Pokémon Edition
+
+Bienvenue dans le générateur de QR Code avec des Pokémon ! Ce projet permet de générer des QR codes uniques avec des images de Pokémon. Les QR codes générés sont ensuite stockés sur le serveur et peuvent être associés à des Pokémon animés sur la page.
+
+## Fonctionnalités
+
+- **Génération de QR Codes personnalisés** : Crée un QR code à partir de n'importe quel lien que tu choisis, et associe-le à une image de Pokémon.
+- **Pokémons animés** : Les Pokémon sont affichés sous forme d'images animées qui bougent.
+- **QR Code dynamique** : En cliquant sur un Pokémon animé, un QR code associé à ce Pokémon sera généré et affiché.
+
+```
+
+### Générer un QR Code Pokémon
+
+1. **Sélectionner une image Pokémon** : Clique sur le bouton "Ajouter un Pokémon" pour ouvrir le formulaire d'ajout.
+2. **Entrer un lien** : Choisis une image de Pokémon et entre un lien que tu souhaites associer à ce Pokémon.
+3. **Générer le QR Code** : Après avoir soumis le formulaire, un QR Code sera généré et ajouté à la liste.
+4. **Voir le QR Code** : Lorsque tu cliques sur un Pokémon animé (dans la section en bas de la page), un QR code lié à ce Pokémon sera affiché.
+
+### Stockage des QR Codes
+
+Les QR codes générés sont stockés dans le dossier `./qrcode` sur le serveur sous forme d'images PNG. Chaque QR code est associé à un Pokémon unique.
+
+## Technologies utilisées
+
+- **Frontend** : HTML, CSS, JavaScript
+- **Backend** : Node.js, Express.js
+
+## Fonctionnement du backend
+
+Le backend fonctionne en deux parties principales :
+
+### Route POST : `/generate-qrcode`
+
+- **Méthode** : `POST`
+- **Données envoyées** : L'image sélectionnée (via FormData)
+- **Réponse** : Le serveur retourne le chemin du QR code généré.
+
+### Route GET : `/qrcode`
+
+- **Méthode** : `GET`
+- **Réponse** : Liste de tous les QR codes générés disponibles sur le serveur.
